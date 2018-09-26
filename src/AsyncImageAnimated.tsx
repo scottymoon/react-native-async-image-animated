@@ -27,6 +27,7 @@ interface Props {
   imageKey?: string,
   placeholderColor?: string,
   placeholderSource?: ImageSource,
+  resizeMode?: string,
   source: NetworkImage,
   style: ViewStyle,
 }
@@ -45,6 +46,10 @@ export default class AsyncImageAnimated extends Component<Props, State> {
 
   props: Props
   state: State
+
+  static defaultProps = {
+    resizeMode: 'contain'
+  }
 
   private animationStyle: AnimationStyle
 
@@ -88,6 +93,7 @@ export default class AsyncImageAnimated extends Component<Props, State> {
       imageKey,
       placeholderColor,
       placeholderSource,
+      resizeMode,
       source,
       style,
     } = this.props
@@ -109,13 +115,13 @@ export default class AsyncImageAnimated extends Component<Props, State> {
           <Animated.Image
             key={imageKey}
             source={source}
-            resizeMode={'contain'}
+            resizeMode={resizeMode}
             style={[
               style,
               {
                 opacity: imageOpacity,
                 position: 'absolute',
-                resizeMode: 'contain',
+                resizeMode: resizeMode,
               },
             ]}
             onLoad={this.onLoad}
@@ -130,7 +136,7 @@ export default class AsyncImageAnimated extends Component<Props, State> {
               {
                 opacity: placeholderOpacity,
                 position: 'absolute',
-                resizeMode: 'contain',
+                resizeMode: resizeMode,
               },
             ]} />
         }
