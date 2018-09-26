@@ -115,7 +115,6 @@ export default class AsyncImageAnimated extends Component<Props, State> {
           <Animated.Image
             key={imageKey}
             source={source}
-            resizeMode={resizeMode}
             style={[
               style,
               {
